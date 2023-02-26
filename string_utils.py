@@ -12,10 +12,12 @@ class StringMaker:
     '''It starts the object with or without specific content. If content not
        informed it will add an empty space to the first index of string.'''
     def __init__(self, content:'str'='', delimiter=void):
-        self.content = [content]
+        self.content = []
         if(content):
-            self.content.append(delimiter)
-        self.delimiter = delimiter
+            if(content.index(empty_space)):
+                words = content.split(delimiter)
+                for word in words:
+                    self.content.append(word)
         
     '''It will return the entry related to the index informed. The valid entries
        range from 1 to length. If invalid index is entered the method will return
@@ -54,5 +56,46 @@ class StringChain(StringMaker):
     def __init__(self, content:'str'=void):
         StringMaker.__init__(self, content, delimiter=' ')
 
+'''Internal communication protocol.'''
+class ICP:
     
-
+    '''The internal communication protocol will encapsulate all user entries to
+       the communication system. It will include the current state for the user
+       and values informed in last interaction.'''
+    def __init__(self, uri=None):
+        self.uri = uri
+        self.__map()
+        
+    '''The routine should return the state which comes before every ?. If
+       no sign (?) is present the state will be the string itself as long as
+       its length is not 0.'''
+    def get_header(self):
+        pass
+    
+    '''It will return a value related to a param part of the uri. For example:
+       home.members.shifts.selected?username=eric&shift=2023-01-01. If the key
+       is equals to "shift" the routine should return in this case 2023-01-01
+       and the return MUST be a string.
+       
+       Sometimes the param will hold values of distinct types. Another example:
+       uri: home.members.shifts?username=eric&shift=3. The key=shift would return 
+       in this case the number 3, but as string.
+       '''
+    def get(self, key=None):
+        pass
+    
+    '''The routine return all available params in uri. If no param it will return 
+       None.'''
+    def params(self):
+        pass
+    
+    '''The routine returns the number of params within the uri informed. If no param
+       within the uri the routine will return False.'''
+    def has_params(self):
+        pass
+    
+    '''The __map() routine will map params and values related. This routine is private.
+       and must NOT be visible from outside this context.'''
+    def __map(self):
+        pass
+    
