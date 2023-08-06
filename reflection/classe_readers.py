@@ -11,12 +11,25 @@ def attributes(entity):
                 
     return attributes
 
+def instance_attributes(entity):
+    attributes = []
+    for attribute in entity.__dict__.keys():
+        attributes.append(attribute)
+    
+    return attributes
+
 class Car:
     
     color = 'Gray'
     
-    def brand(self):
-        return 'brand'
+    def __init__(self):
+        self.brand = self.Brand()
+    
+    def change_color(self, new_color):
+        color = new_color
+        
+    class Brand:
+        pass
 
 car = Car()
-print(attributes(car))
+print(instance_attributes(car))
