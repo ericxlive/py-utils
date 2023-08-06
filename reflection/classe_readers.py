@@ -3,13 +3,13 @@ import inspect
 
 def attributes(entity):
     
-    members = []
+    attributes = []
     for member in inspect.getmembers(entity):
         if not member[0].startswith('_'):
             if not inspect.ismethod(member[1]):
-                members.append(member)
+                attributes.append(member)
                 
-    return members
+    return attributes
 
 class Car:
     
