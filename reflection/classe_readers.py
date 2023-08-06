@@ -1,7 +1,7 @@
 
 import inspect
 
-def methods(entity):
+def attributes(entity):
     
     members = []
     for member in inspect.getmembers(entity):
@@ -10,3 +10,13 @@ def methods(entity):
                 members.append(member)
                 
     return members
+
+class Car:
+    
+    color = 'Gray'
+    
+    def brand(self):
+        return 'brand'
+
+car = Car()
+print(attributes(car))
