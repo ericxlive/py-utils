@@ -1,6 +1,8 @@
 
 import inspect
 
+'''Return class objects attribute names. Only the attributes/members including the 
+   instance attributes.__annotations__'''
 def attributes(entity):
     
     attributes = []
