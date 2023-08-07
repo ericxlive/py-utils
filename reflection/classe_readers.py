@@ -18,6 +18,15 @@ def instance_attributes(entity):
     
     return attributes
 
+def attributes_with_values(entity):
+    attributes = {}
+    for attribute in entity.__dict__.keys():
+        if attribute[:2] != '__':
+            value = getattr(entity, attribute)
+            if not callable(value):
+                attributes[attribute] = value
+    return attributes
+
 class Car:
     
     color = 'Gray'
